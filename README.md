@@ -64,4 +64,34 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 
 ## Usage
 
+To use uja_faultzones you need to provide an `.csv` input file containing sets of parameter combinations.
+Have a look at `test_input_set.csv` on how to set it up.
+
+Column names must contain: k_matrix, k_fault, viscosity, S_matrix, S_fault, rate
+The parameter values must be provided in SI units (except well rate):
+* k_matrix = matrix permeability [m²]
+* k_fault = fault zone permeability [m²]
+* viscosity = fluid viscosity [Pa*s]
+* S_matrix = specific matrix storage [1/Pa]
+* S_fault = specific fault zone storage [1/Pa]
+* rate = production rate applied to well [l/s]
+
+Put the `.csv` input file into the same folder as `fz_pi_calc.py`.
+Open `fz_pi_calc.py` and provide the `.csv` input file name under USER INPUT.
+
+If you want to output Plots of the derivative analysis as well as the PI alteration calculation for each individual parameter combination set 'plotting = True'
+
+If you want to save the pressure information as `.csv` files for each individual parameter combination set `save_pressure_curves = True`
+
+Make sure the `uja_faultzones` python environment is activated.
+
+Run it:
+
+    ```
+    cd ~/uja_faultzones
+    python fz_pi_calc.py
+    ```
+
+Based on the current time stamp a new folder is created which will contain all requested output as well as summary `.csv` file containing the main results for all parameter combinations provided in the input `.csv` file. Its name is `calculated_*yourinputfilename*.csv`
+
 ## Cite
