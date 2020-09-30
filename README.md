@@ -38,24 +38,21 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 
 * Clone uja_faultzones
 
-    `cd ~/
-    git clone https://github.com/Florian-Konrad/uja_faultzones.git
-    cd ~/uja_faultzones
-    git checkout master`
+    `cd ~/`
+    `git clone https://github.com/Florian-Konrad/uja_faultzones.git`
+    `cd ~/uja_faultzones`
+    `git checkout master`
 
 * Install Miniconda3 e.g. Linux Users:
 
-    curl -L -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-
-    bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/miniconda3
-
-    export PATH=$HOME/miniconda3/bin:$PATH
+    `curl -L -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`
+    `bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/miniconda3`
+    `export PATH=$HOME/miniconda3/bin:$PATH`
 
 * Install Python and Packages:
 
-    conda env create -n uja_faultzones -f uja_pythonenv.yml
-
-    conda activate uja_faultzones
+    `conda env create -n uja_faultzones -f uja_pythonenv.yml`
+    `conda activate uja_faultzones`
 
 
 
