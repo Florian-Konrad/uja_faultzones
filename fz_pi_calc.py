@@ -48,7 +48,7 @@ df_params.to_csv('parameter_input.csv', index = False)
 ########################################
 ########################################
 #USER INPUT:
-input_filename = 'invest_radial_but_nopichange.csv'
+input_filename = 'test_input_set.csv'
 save_pressure_curves = True
 plotting = True
 ########################################
