@@ -38,13 +38,12 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 
 * Clone uja_faultzones
 
-    ```cd ~/
-
+    ```
+    cd ~/
     git clone https://github.com/Florian-Konrad/uja_faultzones.git
-
     cd ~/uja_faultzones
-
-    git checkout master```
+    git checkout master
+    ```
 
 * Install Miniconda3 e.g. Linux Users:
 
