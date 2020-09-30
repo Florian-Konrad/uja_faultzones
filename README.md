@@ -34,9 +34,10 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 * Disk: 2 GBs
 
 #### Installation
-* Install git (https://github.com/git-guides/install-git) and git LFS (https://docs.github.com/en/free-pro-team@latest/github/managing-large-files/installing-git-large-file-storage)
+* Install git (https://github.com/git-guides/install-git)
+    and git LFS (https://docs.github.com/en/free-pro-team@latest/github/managing-large-files/installing-git-large-file-storage)
 
-* Clone uja_faultzones
+* Clone uja_faultzones:
 
     ```
     cd ~/
@@ -47,18 +48,18 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 
 * Install Miniconda3 e.g. Linux Users:
 
-    `curl -L -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`
-
-    `bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/miniconda3`
-
-    `export PATH=$HOME/miniconda3/bin:$PATH`
+    ```
+    curl -L -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/miniconda3
+    export PATH=$HOME/miniconda3/bin:$PATH
+    ```
 
 * Install Python and Packages:
 
-    `conda env create -n uja_faultzones -f uja_pythonenv.yml`
-
-    `conda activate uja_faultzones`
-
+    ```
+    conda env create -n uja_faultzones -f uja_pythonenv.yml
+    conda activate uja_faultzones
+    ```
 
 
 ## Usage
