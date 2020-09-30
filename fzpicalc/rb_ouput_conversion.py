@@ -3,7 +3,7 @@
 
 import numpy as np
 import pandas as pd
-from fzpicalc.flow_type_cat_simpl import determine_main_flow_type
+from fzpicalc.flow_type_cat_simpl import determine_main_flow_type_light
 from fzpicalc.dwaf_el_scaling import result_sclaing
 
 
@@ -42,7 +42,7 @@ def prep_rb_out(inputarray,SIparams_dict,verb=1):
         return
 
     #do all the classic PTA calcuations on the df:
-    df_calc,df_mft = determine_main_flow_type(df,SIparams_dict)
+    df_calc,df_mft = determine_main_flow_type_light(df,SIparams_dict)
 
     return df_calc,df_mft
 

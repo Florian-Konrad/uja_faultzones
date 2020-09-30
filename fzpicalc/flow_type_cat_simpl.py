@@ -219,17 +219,17 @@ def fast_linear_bilinear_steep_neg_pos_marker(df):
     greater_than = [0.0]*len(DER_slope)
     DER_slope_neg = [0.0]*len(DER_slope)
     DER_slope_pos = [0.0]*len(DER_slope)
-    
-    BC_slope = [0.0]*len(DER_slope) 
+
+    BC_slope = [0.0]*len(DER_slope)
     boundary_DER_slope_min = 0.6
     boundary_dP_slope_max = 0.25
     boundary_found = False
-    
+
     well_slope = [0.0]*len(DER_slope)
     well_minslope = 0.75
-    
-    
-    
+
+
+
     for i,each in enumerate(dP_slope):
         #linear
         #dp slope between 0.25 and 0.6
@@ -241,13 +241,13 @@ def fast_linear_bilinear_steep_neg_pos_marker(df):
         #Der slope between 0.5 and 0.73
         if each > (0.45) and each < (0.55) and DER_slope[i] > (0.5) and DER_slope[i] < (0.73):
             real_linear_marker[i] = DER_slope[i]
-        
+
         #additional linear marker
         #DER slope between 0.375 and 0.6
         #and dP slope similar (7%) to DER slope
         if DER_slope[i] > (linear_slope-(linear_delta+0.025)) and DER_slope[i] < (linear_slope+linear_delta) and np.isclose(each,DER_slope[i],rtol=0.07) == True:
             real_linear_marker[i] = DER_slope[i]
-        
+
         #bilinear
         #dp slope between 0.15 and 0.375
         #DER slope between 0.13 and 0.45
@@ -257,11 +257,11 @@ def fast_linear_bilinear_steep_neg_pos_marker(df):
         #if each >= steep_slope_min and DER_slope[i] >= steep_slope_min:
         if DER_slope[i] >= steep_slope_min:
             greater_than[i] = DER_slope[i]
-        
+
         #find wellstorage-like effects similar to steep
         if np.isclose(DER_slope[i], each, rtol=0.1) ==True and each > well_minslope:
                 well_slope[i] = DER_slope[i]
-        
+
         #model boundary cant be in early time region --> t_hour > 0.1h:
         if i > 36:
             if boundary_found == False:
@@ -270,26 +270,26 @@ def fast_linear_bilinear_steep_neg_pos_marker(df):
                 # dP slope < 0.25
                 # no bilinear marker
                 if DER_slope[i] > boundary_DER_slope_min and each < boundary_dP_slope_max and bilinear_marker[i] == 0:
-                    BC_slope[i:] = DER_slope[i:]              
+                    BC_slope[i:] = DER_slope[i:]
                     boundary_found = True
-            
+
             #find end of boundary marking
             if boundary_found == True:
-                
+
                 if DER_slope[i] <= boundary_DER_slope_min:
                     #if end found check if model boundary end is not at pumping test end
                     # which means that it is not really a model boundary effect
                     # since this would last until pump test end except for rb error hump
                     if i < 60:
                         #resetting BC_slope completely
-                        BC_slope = [0.0]*len(DER_slope) 
+                        BC_slope = [0.0]*len(DER_slope)
                         boundary_found = False
                     else:
                         BC_slope[i:] = [0.0]*len(BC_slope[i:])
                         #set to false again so another boundary effect can be detected
                         boundary_found = False
-        
-        
+
+
         #neagtive DER slope
         if DER_slope[i] < 0:
             DER_slope_neg[i] = DER_slope[i]
@@ -297,11 +297,11 @@ def fast_linear_bilinear_steep_neg_pos_marker(df):
         #positive DER slope
         if DER_slope[i] > 0:
             DER_slope_pos[i] = DER_slope[i]
-    
-    
+
+
     #check for well-like and steep combinations and extened well-like
-    
-    
+
+
     df.loc[:,'real_linear_marker'] = real_linear_marker
     df.loc[:,'bilinear_marker'] = bilinear_marker
     df.loc[:,'greater_than_0.6'] = greater_than
@@ -420,14 +420,14 @@ def identify_radial(df):
 def append_flow_typ(df,matrix_perm):
     entry_length = len(df)
     df.loc[:,'flowtype'] = 'other'
-    
-    
+
+
     n = 0
     while n < (entry_length):
         if df['DER_slope_pos'][n] != 0:
             df.loc[n,'flowtype'] = 'positive'
         n += 1
-    
+
     n = 0
     while n < (entry_length):
         if df['DER_slope_neg'][n] != 0:
@@ -438,7 +438,7 @@ def append_flow_typ(df,matrix_perm):
     while n < (entry_length):
         #only use if more then two consecutive points show bilinear behavior
         if df['bilinear_marker'][n] != 0 and len(df.loc[n-2:n+2].loc[df['bilinear_marker'] > 0.0]) > 2:
-            
+
             #safty check slopes must be similar:
             DER_dP_comp_n = np.isclose(df['DER_slope'][n],df['dP_slope'][n],rtol=0.15)
             DER_dP_comp_n1 = np.isclose(df['DER_slope'][n+1],df['dP_slope'][n+1],rtol=0.15)
@@ -447,8 +447,8 @@ def append_flow_typ(df,matrix_perm):
                 #more safty: DER and dP can't be to far away from each other
                 if df['DruckAenderung'][n] < 5*df['DER'][n]:
                     df.loc[n,'flowtype'] = 'bilinear'
-        n += 1    
-    
+        n += 1
+
     n = 0
     while n < (entry_length):
         if df['greater_than_0.6'][n] != 0:
@@ -460,13 +460,13 @@ def append_flow_typ(df,matrix_perm):
         if df['BC_slope'][n] != 0:
             df.loc[n,'flowtype'] = 'model_boundary'
         n += 1
-    
+
     n = 0
     while n < (entry_length):
         if (matrix_perm < 1e-14) & (df['BC_slope'][n] != 0):
             df.loc[n,'flowtype'] = 'steep'
         n += 1
-    
+
     n = 1
     while n < (entry_length):
         if df['well_slope'][n] != 0:
@@ -477,12 +477,12 @@ def append_flow_typ(df,matrix_perm):
             # change to well_effect since its just a transition
             if df.loc[n-1,'flowtype'] == 'well_effect' and df.loc[n,'flowtype'] == 'steep':
                 df.loc[n,'flowtype'] = 'well_effect'
-        n += 1    
-    
+        n += 1
+
     #if we have well_effect following steep change all well_effect to steep
     # only if dP solpe in the beginning  flat (<0.3) --> fault zone has matrix boundary
     # if it is not flat it still is a well effect
-    
+
     #to do : change 0.3 to 0.7 or check for no of well_effect > 50 --> steep
     if (df.loc[:44,'dP_slope'] < 0.3).any() == True or len(df.loc[df['flowtype']=='well_effect']) > 50:
         n = 10
@@ -504,14 +504,14 @@ def append_flow_typ(df,matrix_perm):
                 n += 1
 
 
-    
+
     n = 0
     while n < (entry_length):
         if df['DER_slope_radial'][n] != 99:
             #df['flowtype'][n] = 'radial'
             df.loc[n,'flowtype'] = 'radial'
         n += 1
-    
+
     n = 0
     while n < (entry_length):
         #only use if more then two consecutive points show linear behavior
@@ -522,15 +522,15 @@ def append_flow_typ(df,matrix_perm):
             if DER_dP_comp_n == True and DER_dP_comp_n1 == True:
                 df.loc[n,'flowtype'] = 'linear'
         n += 1
-    
+
     # check last points of already specified flowtype and check if type changes more than three times
     # --> looks like reduced basis method error
     # should be removed and changed to other:
     #last_n_rows = 15
     #if len(df.tail(last_n_rows)['flowtype'].unique()) > 3:
     #    df.iloc[-last_n_rows:,df.columns.get_loc('flowtype')].loc[df['flowtype']!='model_boundary'] = 'other'
-        
-    # secondary check necessary 
+
+    # secondary check necessary
     # above check can fail  --> then model_bd + other + e.g. linear flow type can be
     # at the end of df
     # check last 22 rows to see if they contain model_boundary
@@ -538,37 +538,37 @@ def append_flow_typ(df,matrix_perm):
     last_n_rows = 22
     if 'model_boundary' in df.tail(last_n_rows)['flowtype'].to_list():
         df.iloc[-last_n_rows:,df.columns.get_loc('flowtype')].loc[df['flowtype']!='model_boundary'] = 'other'
-    
-    
+
+
 
     #repair bi-/linear after steep stiuations
     #where fz reacts first as bc but the stabilzes in bilinear or linear flow regime
     #happens only with t_hour > 0.2 = index > 44
     #account only for situations with more than 6 points of bi-/linear flow
-   
-    
-    
+
+
+
     #df_m.loc[0:3,]
     #df = df_m
-    
-    
-    
+
+
+
     # search and pick bi-/linear parts after steep
-    
-    #if found this will store all lists relevant index ranges 
+
+    #if found this will store all lists relevant index ranges
     #type list of lists
     potential_indexlist_list = []
     keywords = ['linear','bilinear']
     n = 44
     while n < (entry_length-1):
-        
-        if df['flowtype'][n] == 'steep': 
+
+        if df['flowtype'][n] == 'steep':
             #CHECK THE FOLLOWING POINT
             start_i = 0
-            end_i = 0 
+            end_i = 0
             for each_key in keywords:
-                if df['flowtype'][n+1] == each_key: 
-                    #criterium found now endpoint of found flowregime 
+                if df['flowtype'][n+1] == each_key:
+                    #criterium found now endpoint of found flowregime
                     local_i = n+1
                     start_i = local_i
                     while local_i < (entry_length):
@@ -577,7 +577,7 @@ def append_flow_typ(df,matrix_perm):
                         else:
                             #flow type not found anymore --> take index befor and save as last flowtype entry
                             end_i = local_i-1
-                            #end local search 
+                            #end local search
                             local_i = entry_length
                             #skip steep search for these lines since its not necesarry
                             n = end_i
@@ -586,13 +586,13 @@ def append_flow_typ(df,matrix_perm):
                                 c_indexlist = range(start_i,end_i+1)
                                 potential_indexlist_list.append(c_indexlist)
                     break
-                        
+
             #often it is the case that steep is followed by positive and then bi-/linear
             if df['flowtype'][n+1] == 'positive':
                 local_i = n+2 #+2 to check cell after the detected 'positive'
                 while local_i < (entry_length-1):
                     for each_key in keywords:
-                        if df['flowtype'][local_i] == each_key: 
+                        if df['flowtype'][local_i] == each_key:
                             start_i = local_i
                             local_local_i = local_i
                             while local_local_i < (entry_length):
@@ -601,7 +601,7 @@ def append_flow_typ(df,matrix_perm):
                                 else:
                                     #flow type not found anymore --> take index befor and save as last flowtype entry
                                     end_i = local_local_i-1
-                                    #end local local search 
+                                    #end local local search
                                     local_local_i = entry_length
                                     local_i = entry_length
                                     #skip steep search for these lines since its not necesarry
@@ -611,28 +611,28 @@ def append_flow_typ(df,matrix_perm):
                                         c_indexlist = range(start_i,end_i+1)
                                         potential_indexlist_list.append(c_indexlist)
                             break
-                        else:    
-                            #end local search 
+                        else:
+                            #end local search
                             local_i += 1
-        
+
         #if one range has been found n will be set to end and search can continue
-        # so it is possible to find more than one range of indices        
+        # so it is possible to find more than one range of indices
         n += 1
-        
-    
+
+
     confirmed_index_lists = []
 
     # check for those points if dp_slope changes less than 0.001 in more than 2 obersvations
     if len(potential_indexlist_list) > 0:
         for each in potential_indexlist_list:
             df_isolated = df.loc[each].reset_index()
-            
+
             #calc dP_slope_slope:
             append_linear_slope(df_isolated,'dP_slope')
-            
+
             #check if DER slope and dP slope are similar
             DER_dP_comp = np.isclose(df_isolated['DER_slope'],df_isolated['dP_slope'],rtol=0.15)
-            
+
             if len(each) > 10:
                 #test criteria:
                 testing_confirmation = abs(df_isolated['dP_slope_slope']) < 0.02
@@ -645,35 +645,35 @@ def append_flow_typ(df,matrix_perm):
                 if True in testing_confirmation.to_list() and True in DER_dP_comp:
                     if testing_confirmation.value_counts()[True] > 1:
                         confirmed_index_lists.append(each)
-    
+
 
 
     faultzone_bd_detected = False
-    
+
     if len(confirmed_index_lists) > 0:
-        
+
         faultzone_bd_detected = True
-        
+
         for each in confirmed_index_lists:
             #get original df index of first bi-/linear flow entry
-            rep_i = rep_end = each[0]-1 
+            rep_i = rep_end = each[0]-1
             rep_start = 0
             #go back over original df, find indices to repair:
             while rep_i > 0:
-                if df['flowtype'][rep_i] == 'steep' and df['flowtype'][rep_i-1] != 'steep': 
+                if df['flowtype'][rep_i] == 'steep' and df['flowtype'][rep_i-1] != 'steep':
                     rep_start = rep_i
                     rep_i = 0
                 else:
                     rep_i -=1
-            
+
             #take rep_indices and change entries to positive flowtype:
             rep_indices = range(rep_start,rep_end+1)
             df.loc[rep_indices,'flowtype'] = 'positive'
-            
+
             #print('repair done')
 
 
-    
+
     return df, faultzone_bd_detected
 
 
@@ -710,10 +710,10 @@ def classify_datapoints(df_p_curve,params_for_p_curve):
 
 
 
-def determine_main_flow_type_light(df_p_curve,params_for_p_curve,index_of_headline,verb=0):
+def determine_main_flow_type_light(df_p_curve,params_for_p_curve,index_of_headline='not given',verb=0):
 
     df, faultzone_bd_detected = classify_datapoints(df_p_curve,params_for_p_curve)
-    
+
     #skip early time for interpretation:
     start_index = 44 #corresponds to 0.199hours
 
@@ -728,7 +728,7 @@ def determine_main_flow_type_light(df_p_curve,params_for_p_curve,index_of_headli
         else:
             main_flow_type = 'bilinear'
     elif (df.loc[start_index:,'flowtype'] == 'linear').any():
-        main_flow_type = 'linear'      
+        main_flow_type = 'linear'
     elif (df.loc[start_index:,'flowtype'] == 'bilinear').any():
         main_flow_type = 'bilinear'
     elif (df.loc[start_index:,'flowtype'] == 'radial').any():
@@ -738,10 +738,10 @@ def determine_main_flow_type_light(df_p_curve,params_for_p_curve,index_of_headli
     else:
         #safty for strange param combs with no obvious flow type
         if (df.loc[:,'flowtype'] == 'positive').any():
-            main_flow_type = 'unspecifiable_hydr_changes'        
+            main_flow_type = 'unspecifiable_hydr_changes'
         else:
             main_flow_type = 'not_determined'
-            
+
             if verb == 1:
                 print('could not determine main_flow_type_doublecheck')
                 print(params_for_p_curve)
