@@ -19,7 +19,7 @@
 
 ## About
 
-
+<a href="https://github.com/Florian-Konrad/uja_faultzones/"><img src="images/fault_zone_concept.png" alt="fault_zone_concept" width="600"></a>
 
 
 ## Licence
