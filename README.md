@@ -68,13 +68,14 @@ To use uja_faultzones you need to provide an `.csv` input file containing sets o
 Have a look at `test_input_set.csv` on how to set it up.
 
 Column names must contain: k_matrix, k_fault, viscosity, S_matrix, S_fault, rate
-The parameter values must be provided in SI units (except well rate):
-* k_matrix = matrix permeability [m²]
-* k_fault = fault zone permeability [m²]
-* viscosity = fluid viscosity [Pa*s]
-* S_matrix = specific matrix storage [1/Pa]
-* S_fault = specific fault zone storage [1/Pa]
-* rate = production rate applied to well [l/s]
+The parameter values must be provided in the following units:
+* k_matrix = matrix permeability [m²] (valid range: 1.0e-17 - 2.0e-11)
+* k_fault = fault zone permeability [m²] (valid range: 1.0e-14 - 1.0e-9)
+* viscosity = fluid viscosity [Pa*s] (valid range: 1.0e-4 - 3.0e-4)
+* S_matrix = specific matrix storage [1/Pa] (valid range: 2.0e-12 - 1.6e-10)
+* S_fault = specific fault zone storage [1/Pa] (valid range: 2.0e-12 - 1.6e-10)
+* rate = production rate applied to well [l/s] (fix to 20, 10 - 20 possible)
+* fz_thickness = fault zone thickness [m] (valid discrete values: 20, 35, 50, 75, 100, 200, 300)
 
 Put the `.csv` input file into the same folder as `fz_pi_calc.py`.
 Open `fz_pi_calc.py` and provide the `.csv` input file name under USER INPUT.
@@ -87,10 +88,10 @@ Make sure the `uja_faultzones` python environment is activated.
 
 Run it:
 
-```
-    cd ~/uja_faultzones
-    python fz_pi_calc.py
-```
+  ```
+  cd ~/uja_faultzones
+  python fz_pi_calc.py
+  ```
 
 Based on the current time stamp a new folder is created which will contain all requested output as well as summary `.csv` file containing the main results for all parameter combinations provided in the input `.csv` file. Its name is `calculated_*yourinputfilename*.csv`
 
