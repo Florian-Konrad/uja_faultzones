@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">Reduced Basis Model for a single inclined fault zone with a vertical well in the center of a porous aquifer - trained on parameter ranges for the Upper Jurassic aquifer of the Northern Alpine Foreland Basin in Souther Germany</h4>
+<h4 align="center">Reduced Basis Model for a single inclined fault zone pierced by a vertical well inside of a porous aquifer - trained on parameter ranges for the Upper Jurassic aquifer of the Northern Alpine Foreland Basin in Souther Germany - based on its typical aquifer geometry</h4>
 
 <p align="center">
   <a href="LICENSE">

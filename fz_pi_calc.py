@@ -19,7 +19,7 @@ from datetime import datetime
 p_names=['k_matrix','k_fault','viscosity','S_matrix','S_fault','rate','fz_thickness'] #order is important name order must correspond to min max lists and fz_thickness must be last
 p_mins=[1.0e-17,1.0e-14,1.0e-4,2.0e-12,2.0e-12,20] #m²,m²,Pa*s,1/Pa,1/Pa,l/s
 p_maxs=[1.0e-12,1.0e-09,3.0e-4,1.6e-10,1.6e-10,20] #m²,m²,Pa*s,1/Pa,1/Pa,l/s
-fzthickness_vals = [20,50] #m from the possible discrete values defined in the RB models: [15,20,50,100,200,300]
+fzthickness_vals = [20,50] #m from the possible discrete values defined in the RB models: [15,20,35,50,100,200,300]
 log_status=[True,True,False,False,False,False]
 #define gridsteps over input space
 p_steps=[5,4,2,2,2,1]
@@ -51,6 +51,9 @@ df_params.to_csv('parameter_input.csv', index = False)
 input_filename = 'test_input_set.csv'
 save_pressure_curves = True
 plotting = True
+#addtional plotting output formats will be generated if set True:
+plotting_pdf=False
+plotting_html=True
 ########################################
 ########################################
 ########################################
@@ -175,6 +178,8 @@ for ei, each_input in input_data_set.iterrows():
                                      paramdict,
                                      current_identifier,
                                      ouput_dir,
+                                     plotting_pdf=plotting_pdf,
+                                     plotting_html=plotting_html,
                                      fontpath=os.path.join('fzpicalc','FiraMono-Medium.otf'),
                                      plotting=plotting)
     

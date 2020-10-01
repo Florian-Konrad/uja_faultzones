@@ -20,6 +20,8 @@ def try_to_get_pi(df_fz,
                   plotdir,
                   fontpath,
                   plotting=False,
+                  plotting_pdf=False,
+                  plotting_html=False,
                   verb=0):
 
     
@@ -125,6 +127,15 @@ def try_to_get_pi(df_fz,
     
     if plotting == True:
         
+        if plotting_pdf == True:
+            pdf=True
+        else:
+            pdf=False
+        if plotting_html == True:
+            html = True
+        else:
+            html = False
+        
         param_dict['rel_Pi_change[-]'] = Pi_change_rel
         param_dict['main flow type - fault zone'] = mft_fz
         
@@ -145,7 +156,7 @@ def try_to_get_pi(df_fz,
                          indv_plotname+'_PI_plot',
                          plotdir,
                          Pi_m_ref_list,
-                         plottitle='Pi Evolution Comparisson FZ and Matrix-only',
+                         plottitle='PI and Fault Zone Influence Evolution',
                          fontpath=fontpath,
                          optional_annotation=[parameter_text_annotation],
                          pdf=False,
@@ -165,9 +176,9 @@ def try_to_get_pi(df_fz,
                          ytyp='log',
                          plotdir = plotdir,
                          auto_open=False,
-                         html=False,
+                         html=html,
                          png=True,
-                         pdf=False)
+                         pdf=pdf)
         
     return Pi_change_si,delta_p_m_fz,Pi_change_rel,Pi_picktime,Ref_Pi_matrix,Ref_Pi_matrix_picktime,df_fz,df_m,mft_fz,mft_m,neg_pressure
 

@@ -67,7 +67,7 @@ def gen_xaxis_dict(title,typ='log',rang=[-14,-9], dtick=1,showticklabels=True,sh
                 type=typ,
                 showline=True,
                 gridcolor='rgb(71,71,71)',
-                linewidth=0.5,
+                linewidth=1,
                 linecolor='#454545',
                 showgrid=showgrid,
                 mirror=True,
@@ -78,14 +78,14 @@ def gen_xaxis_dict(title,typ='log',rang=[-14,-9], dtick=1,showticklabels=True,sh
                 autorange=False,
                 range = rang, #log
                 dtick = dtick,
-                tickformat="g",
+                tickformat=".1r",
                 tickfont=dict(
                         size=13
                         ),
                 )
     return xaxis
 
-def gen_yaxis_dict(title,typ='log',rang=[-17,-12], dtick=1,tickformat="1.2f",ticks='outside',showticklabels=True,showgrid=True):
+def gen_yaxis_dict(title,typ='log',rang=[-17,-12], dtick=1,tickformat=".2r",ticks='outside',showticklabels=True,showgrid=True):
     yaxis =dict(
                 title=title,
                 titlefont=dict(
@@ -94,7 +94,7 @@ def gen_yaxis_dict(title,typ='log',rang=[-17,-12], dtick=1,tickformat="1.2f",tic
                 type=typ,
                 showline=True,
                 gridcolor='rgb(71,71,71)',
-                linewidth=0.5,
+                linewidth=1,
                 linecolor='#454545',
                 showgrid=showgrid,
                 mirror=True,
@@ -140,8 +140,8 @@ def saveplot_routine(fig,indv_plotname,plotdir,newfoldername,auto_open=True,pdf=
 def layout_f_plotly(xaxis,
                     yaxis,
                     llegendword='insert lleg word',
-                    width=1050,
-                    height=1050,
+                    width=1500,
+                    height=1500,
                     annotations=[],
                     fontsize=13,
                     fontpath='./fzpicalc/FiraMono-Medium.otf'):
@@ -474,7 +474,7 @@ def plot_pressure(ipath_arr,
         p_trace=go.Scatter(showlegend=True,
                             x=x,
                             y=y,
-                            name='dP '+filename+diff_string,
+                            name='dP '+diff_string,
                             hoverinfo = 'y+name+text',
                             text=difftext,
                             mode = 'lines+markers',
@@ -536,7 +536,7 @@ def plot_pressure(ipath_arr,
     # setting x-axis:
     if xtyp == 'log':
         xmax=math.ceil(np.log10(df['t_hour'].max()))
-        xmin=math.floor(np.log10(df['t_hour'][1]))  
+        xmin=basic_func.tidy(math.floor(np.log10(df['t_hour'][1])),1)  
         xaxis1=gen_xaxis_dict(title=xtitle,typ=xtyp,rang=[xmin,xmax])
     elif xtyp == 'linear':
         xmax=math.ceil(df['t_hour'].max())
@@ -571,7 +571,7 @@ def plot_pressure(ipath_arr,
             
             
         if True in DERplot:
-            yaxis1=gen_yaxis_dict(title=ytitle+' / DER',typ=ytyp,rang=[ymin,ymax],tickformat="1.3f")
+            yaxis1=gen_yaxis_dict(title=ytitle+' / DER',typ=ytyp,rang=[ymin,ymax],tickformat=".1r")
         else:
             yaxis1=gen_yaxis_dict(title=ytitle,typ=ytyp,rang=[ymin,ymax],tickformat="1.3f")        
     
@@ -910,7 +910,8 @@ def plot_pi_comp (df_fz,
     x = df_fz['t_hour']
     y1 = df_fz['Pi[l/s/MPa]']
     #y2 = df_m['Pi[l/s/MPa]']
-    y3 = df_fz['rel_Pi_change[-]']
+    y3 = df_fz.iloc[:-1]
+    y3 = y3['rel_Pi_change[-]']
     
     #ymax = 2*(max([np.median(y1),np.median(y2),np.median(y3)]))
     
@@ -929,7 +930,9 @@ def plot_pi_comp (df_fz,
                 mirror=True,
                 showline=True,
                 zeroline=False,
-                gridcolor='#000000',
+                linewidth=1,
+                linecolor='#454545',
+                gridcolor='rgb(71,71,71)',
                 ticks='outside',
                 showticklabels=True,
                 tickcolor='#000000',
@@ -937,17 +940,19 @@ def plot_pi_comp (df_fz,
                 tickformat="g",
                 tickfont=dict(size=13),
                 )
-    
+
     
     yaxis =dict(
-                title='Pi/dp_diff',
+                title='Pi [l/s/Mpa] / rel. FZ influence [-]',
                 titlefont=dict(size=15),
                 type='log',
                 showgrid=True,
                 mirror=True,
                 showline=True,
                 zeroline=False,
-                gridcolor='#000000',
+                linewidth=1,
+                linecolor='#454545',
+                gridcolor='rgb(71,71,71)',
                 ticks='outside',
                 showticklabels=True,
                 tickcolor='#000000',
@@ -956,6 +961,7 @@ def plot_pi_comp (df_fz,
                 tickformat="1.2f",
                 tickfont=dict(size=13),
                 )
+    
     
     annotations=[]
     an = dict(x=0.50,
