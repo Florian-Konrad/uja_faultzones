@@ -2,11 +2,11 @@
   <br>
   uja_faultzones
   <br>
-  A parametric investigation tool for fault zones
+  A parametric investigation tool for fault zones and their effect on well productivity
   <br>
 </h1>
 
-<h4 align="center">Reduced Basis Model for a single fault zone inside a porous aquifer - trained on parameter ranges for the Upper Jurassic aquifer of the Northern Alpine Foreland Basin in Souther Germany</h4>
+<h4 align="center">Reduced Basis Model for a single inclined fault zone with a vertical well in the center of a porous aquifer - trained on parameter ranges for the Upper Jurassic aquifer of the Northern Alpine Foreland Basin in Souther Germany</h4>
 
 <p align="center">
   <a href="LICENSE">
@@ -79,7 +79,7 @@ The parameter values must be provided in SI units (except well rate):
 Put the `.csv` input file into the same folder as `fz_pi_calc.py`.
 Open `fz_pi_calc.py` and provide the `.csv` input file name under USER INPUT.
 
-If you want to output Plots of the derivative analysis as well as the PI alteration calculation for each individual parameter combination set 'plotting = True'
+If you want to output Plots of the derivative analysis as well as the PI alteration calculation for each individual parameter combination set `plotting = True`
 
 If you want to save the pressure information as `.csv` files for each individual parameter combination set `save_pressure_curves = True`
 
@@ -87,10 +87,10 @@ Make sure the `uja_faultzones` python environment is activated.
 
 Run it:
 
-    ```
+```
     cd ~/uja_faultzones
     python fz_pi_calc.py
-    ```
+```
 
 Based on the current time stamp a new folder is created which will contain all requested output as well as summary `.csv` file containing the main results for all parameter combinations provided in the input `.csv` file. Its name is `calculated_*yourinputfilename*.csv`
 
