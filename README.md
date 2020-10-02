@@ -1,8 +1,8 @@
 <h1 align="center">
+  Upper Jurassic Aquifer Fault Zones
   <br>
-  uja_faultzones
   <br>
-  A parametric investigation tool for fault zones and their effect on well productivity
+  uja_faultzones a parametric investigation tool for fault zones and their effect on well productivity
   <br>
 </h1>
 
