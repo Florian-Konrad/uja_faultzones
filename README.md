@@ -19,8 +19,13 @@
 
 ## About
 
-<a href="https://github.com/Florian-Konrad/uja_faultzones/"><img src="images/fault_zone_concept.png" alt="fault_zone_concept" width="600"></a>
+This Python tool is based on a numerical FE model of a typical fault zone for the Upper Jurassic aquifer in Southern Germany (https://doi.org/10.1186/s40517-019-0137-4). By applying the Reduced Basis method a reduced model was generated which can be used now to calculate the pressure curves of pumping tests of a vertical well inside a 70° inclined fault zone surrounded by an porous aquifer of 500 meter thickness by only supplying the governing hydraulic parameters in a table as `.csv` file. Calculation times are generally below 1 second depending on the computer system.
 
+Focus of uja_faultzones is to simulate two pumping tests for each parameter combination that it is given, one with and one without the fault zone. It then evaluates these pressure curves through the Bourdet Derivative to derive the main flow regime. Next, it compares both in an attempt to calculate the wells relative productivity index improvement through the fault zone. This calculation is only possible if the difference between the two pressure curves becomes numerically stable which depends on the chosen parameters (less than 0.005% value change per hour). Pressure curves can be ouput as `.csv` files as well as plots in various formats.
+
+<p align="center">
+    <a href="https://github.com/Florian-Konrad/uja_faultzones/"><img src="images/fault_zone_concept.png" alt="fault_zone_concept" width="600"></a>
+</p>
 
 ## Licence
 uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://github.com/Florian-Konrad/uja_faultzones/master/LICENSE).
