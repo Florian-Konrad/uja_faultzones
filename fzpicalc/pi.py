@@ -159,9 +159,9 @@ def try_to_get_pi(df_fz,
                          plottitle='PI and Fault Zone Influence Evolution',
                          fontpath=fontpath,
                          optional_annotation=[parameter_text_annotation],
-                         pdf=False,
+                         pdf=pdf,
                          png=True,
-                         html=False)
+                         html=html)
 
         #fault zone and matrix dp and DER plot
         pls.plot_pressure([df_fz,df_m],
