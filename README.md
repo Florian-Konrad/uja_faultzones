@@ -77,13 +77,13 @@ IMPORTANT: hydraulic fault zone properties have to be higher than matrix for val
 Column names must contain (exact spelling): `k_matrix`, `k_fault`, `viscosity`, `S_matrix`, `S_fault`, `rate`, `fz_thickness`
 
 The parameter values must be provided in the following units:
-* k_matrix = matrix permeability [m²] (valid range: 1.0e-17 - 2.0e-11)
-* k_fault = fault zone permeability [m²] (valid range: 1.0e-14 - 1.0e-9)
-* viscosity = fluid viscosity [Pa*s] (valid range: 1.0e-4 - 3.0e-4)
-* S_matrix = specific matrix storage [1/Pa] (valid range: 2.0e-12 - 1.6e-10)
-* S_fault = specific fault zone storage [1/Pa] (valid range: 2.0e-12 - 1.6e-10)
-* rate = production rate applied to well [l/s] (fix to 20, 10 - 20 possible)
-* fz_thickness = fault zone thickness [m] (valid discrete values: 10, 15, 20, 35, 50, 75, 100, 200, 300)
+* `k_matrix` = matrix permeability [m²] (valid range: 1.0e-17 - 2.0e-11)
+* `k_fault` = fault zone permeability [m²] (valid range: 1.0e-14 - 1.0e-9)
+* `viscosity` = fluid viscosity [Pa*s] (valid range: 1.0e-4 - 3.0e-4)
+* `S_matrix` = specific matrix storage [1/Pa] (valid range: 2.0e-12 - 1.6e-10)
+* `S_fault` = specific fault zone storage [1/Pa] (valid range: 2.0e-12 - 1.6e-10)
+* `rate` = production rate applied to well [l/s] (fix to 20, 10 - 20 possible)
+* `fz_thickness` = fault zone thickness [m] (valid discrete values: 10, 15, 20, 35, 50, 75, 100, 200, 300)
 
 Put the `.csv` input file into the same folder as `fz_pi_calc.py`.
 Open `fz_pi_calc.py` and provide the `.csv` input file name under USER INPUT.
