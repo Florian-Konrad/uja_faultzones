@@ -74,7 +74,7 @@ Have a look at `test_input_set.csv` on how to set it up.
 
 IMPORTANT: hydraulic fault zone properties have to be higher than matrix for valid results regarding the fault zone associated well PI increase; if the user is only interested in the pressure curves and plots they are still valid in that case!
 
-Column names must contain (exact spelling): k_matrix, k_fault, viscosity, S_matrix, S_fault, rate, fz_thickness
+Column names must contain (exact spelling): `k_matrix`, `k_fault`, `viscosity`, `S_matrix`, `S_fault`, `rate`, `fz_thickness`
 
 The parameter values must be provided in the following units:
 * k_matrix = matrix permeability [m²] (valid range: 1.0e-17 - 2.0e-11)
@@ -105,16 +105,16 @@ Based on the current time stamp a new folder is created which will contain all r
 
 Results:
 
-* main flow type - matrix / main flow type - fault zone = result of derivative analysis (radial, bilinear, linear, steep or unspecifiable_hydr_changes)
+* `main flow type - matrix` / `main flow type - fault zone` = result of derivative analysis (radial, bilinear, linear, steep or unspecifiable_hydr_changes)
     * radial, bilinear, linear = standard well test analysis nomenclature
     * steep = the fault zone experiences a negative boundary like steep Bourdet Derivative (DER) when the pressure transient moves into the matrix
     * unspecifiable_hydr_changes = the Bourdet Derivative (DER) does not evolve into a specific classifiable flow regime, just slight positive or negative slope are experienced that don't allow for a classification
-* Pi_ref Matrix [l/s/MPa] = reference productivity index of the matrix scenario which is used to calculate the relative fault zone influence (Rel. fault zone PI influence [-])
-* P_ref pick time [h] = time at which the reference PI is picked (342.76 means Pi_ref was derived through radial DER extrapolation to guarantee trend-free comparison)
-* Rel. fault zone PI influence [-] = main result of fault zone analysis, relative increase of the wells PI through fault zone presence, IMPORTANT: will be empty if no equilibrium was found
-* Pi change FZ [l/s/MPa] = absolute increase of the wells PI through fault zone presence
-* dP change FZ [MPa] = pressure difference between matrix and fault zone pressure curve when equilibrium (less than 0.005% value change per hour) is reached
-* Pi change pick time [h] = time at which the equilibrium was found
+* `Pi_ref Matrix [l/s/MPa]` = reference productivity index of the matrix scenario which is used to calculate the relative fault zone influence (Rel. fault zone PI influence [-])
+* `P_ref pick time [h]` = time at which the reference PI is picked (342.76 means Pi_ref was derived through radial DER extrapolation to guarantee trend-free comparison)
+* `Rel. fault zone PI influence [-]` = main result of fault zone analysis, relative increase of the wells PI through fault zone presence, IMPORTANT: will be empty if no equilibrium was found
+* `Pi change FZ [l/s/MPa]` = absolute increase of the wells PI through fault zone presence
+* `dP change FZ [MPa]` = pressure difference between matrix and fault zone pressure curve when equilibrium (less than 0.005% value change per hour) is reached
+* `Pi change pick time [h]` = time at which the equilibrium was found
 
 
 ## Cite
