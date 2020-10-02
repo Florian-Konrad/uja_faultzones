@@ -30,7 +30,7 @@ def check_input(row_dict,row_index):
             check = False
         else: 
             if each_req == 'fz_thickness':
-                if row_dict[each_req] not in [15,20,35,50,75,100,200,300]:
+                if row_dict[each_req] not in [10,15,20,35,50,75,100,200,300]:
                     print('\n')
                     print('INPUT ERROR: '+each_req+' in line '+str(row_index)+' invalid must be one of the following values: 15, 20, 35, 50, 75, 100, 200, 300 (row no. starting with 0)')
                     print('\n')
