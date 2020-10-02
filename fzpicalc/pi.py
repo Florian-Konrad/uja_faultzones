@@ -159,6 +159,7 @@ def try_to_get_pi(df_fz,
                          plottitle='PI and Fault Zone Influence Evolution',
                          fontpath=fontpath,
                          optional_annotation=[parameter_text_annotation],
+                         auto_open=False,
                          pdf=pdf,
                          png=True,
                          html=html)

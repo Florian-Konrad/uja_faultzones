@@ -51,7 +51,7 @@ df_params.to_csv('parameter_input.csv', index = False)
 #USER INPUT:
 input_filename = 'test_input_set.csv'
 save_pressure_curves = True
-plotting = True
+plotting = True # this will enable pressure curve and derivative plots as well as PI calculation plot as .png
 #addtional plotting output formats will be generated if set True:
 plotting_pdf=False
 plotting_html=True

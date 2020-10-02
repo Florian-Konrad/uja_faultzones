@@ -904,7 +904,7 @@ def plot_pi_comp (df_fz,
                       plottitle='Pressure Comparisson FZ and Matrix-only',
                       fontpath='./FiraMono-Medium.otf',
                       optional_annotation=[],
-                      auto_open=True,
+                      auto_open=False,
                       pdf=True,
                       png=False,
                       html=False):
