@@ -35,7 +35,7 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 
 #### Minimum System Requirements
 * Python 3+
-* Git LFS
+* Git & Git LFS
 * Disk: 2 GBs
 
 #### Installation
