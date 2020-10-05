@@ -39,8 +39,11 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 * Disk: 2 GBs
 
 #### Installation
+* Install Miniconda3 (https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
+
 * Install git (https://github.com/git-guides/install-git)
-    and git LFS (https://docs.github.com/en/free-pro-team@latest/github/managing-large-files/installing-git-large-file-storage)
+
+* Install git LFS (https://docs.github.com/en/free-pro-team@latest/github/managing-large-files/installing-git-large-file-storage)
 
 * Clone uja_faultzones:
 
