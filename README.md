@@ -39,7 +39,6 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 * Disk: 2 GBs
 
 #### Installation
-* Install Miniconda3 (https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
 * Install git (https://github.com/git-guides/install-git)
 
@@ -55,6 +54,8 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
     ```
 
 * Install Miniconda3 e.g. Linux Users:
+
+    https://conda.io/projects/conda/en/latest/user-guide/install/index.html
 
     ```
     curl -L -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
