@@ -53,7 +53,7 @@ def make_basic_text_annotation_from_dict(dikt,
               xref='paper',
               yref='paper',
               font =dict(family=fontpath, 
-                         size=10, 
+                         size=15, 
                          color='#000000'))
                          
     return an
@@ -62,7 +62,7 @@ def gen_xaxis_dict(title,typ='log',rang=[-14,-9], dtick=1,showticklabels=True,sh
     xaxis =dict(
                 title=title,
                 titlefont=dict(
-                        size=15
+                        size=25
                         ),
                 type=typ,
                 showline=True,
@@ -80,7 +80,7 @@ def gen_xaxis_dict(title,typ='log',rang=[-14,-9], dtick=1,showticklabels=True,sh
                 dtick = dtick,
                 tickformat=".1r",
                 tickfont=dict(
-                        size=13
+                        size=20
                         ),
                 )
     return xaxis
@@ -89,7 +89,7 @@ def gen_yaxis_dict(title,typ='log',rang=[-17,-12], dtick=1,tickformat=".2r",tick
     yaxis =dict(
                 title=title,
                 titlefont=dict(
-                        size=15
+                        size=25
                         ),
                 type=typ,
                 showline=True,
@@ -107,7 +107,7 @@ def gen_yaxis_dict(title,typ='log',rang=[-17,-12], dtick=1,tickformat=".2r",tick
                 dtick = dtick,
                 tickformat=tickformat,
                 tickfont=dict(
-                        size=13
+                        size=20
                         ),
                 )
     return yaxis
@@ -144,7 +144,7 @@ def layout_f_plotly(xaxis,
                     width=1500,
                     height=1500,
                     annotations=[],
-                    fontsize=13,
+                    fontsize=17,
                     fontpath='./fzpicalc/FiraMono-Medium.otf'):
     font = ImageFont.truetype(fontpath, fontsize)
     size = font.getsize(llegendword)
@@ -510,7 +510,7 @@ def plot_pressure(ipath_arr,
                                 text=flowtype_label,
                                 textposition='top center',
                                 mode = 'markers+text',
-                                textfont=dict(size=7),
+                                textfont=dict(size=12),
                                 line=dict(color=rgb,
                                           width=2,
                                           dash = 'dot'),
@@ -582,7 +582,7 @@ def plot_pressure(ipath_arr,
     an = dict(x=0.50,
               y=0.95,
               showarrow=False,
-              text=parametertext1,
+              text='Derivative Plot<br>Fault Zone vs Matrix',
               bgcolor='rgb(255,255,255)',
               opacity=0.8,
               bordercolor='#000000',
@@ -591,7 +591,7 @@ def plot_pressure(ipath_arr,
               xref='paper',
               yref='paper',
               font =dict(family=fontpath, 
-                         size=17, 
+                         size=30, 
                          color='#000000'))
     annotations.append(an)
     
@@ -607,7 +607,7 @@ def plot_pressure(ipath_arr,
           xref='paper',
           yref='paper',
           font =dict(family=fontpath, 
-                     size=10, 
+                     size=15, 
                      color='#000000'))
     annotations.append(an)
     
@@ -742,7 +742,7 @@ def plot_sobol(df_S1,
     
     xaxis =dict(
                 title='no. of samples',
-                titlefont=dict(size=15),
+                titlefont=dict(size=25),
                 type='linear',
                 showgrid=True,
                 mirror=True,
@@ -754,13 +754,13 @@ def plot_sobol(df_S1,
                 tickcolor='#000000',
                 autorange=True,
                 tickformat="g",
-                tickfont=dict(size=13),
+                tickfont=dict(size=20),
                 )
     
     
     yaxis =dict(
                 title='sensitivity index',
-                titlefont=dict(size=15),
+                titlefont=dict(size=25),
                 type='linear',
                 showgrid=True,
                 mirror=True,
@@ -772,7 +772,7 @@ def plot_sobol(df_S1,
                 tickcolor='#000000',
                 autorange=True,
                 tickformat="1.2f",
-                tickfont=dict(size=13),
+                tickfont=dict(size=20),
                 )
     
     annotations=[]
@@ -788,7 +788,7 @@ def plot_sobol(df_S1,
               xref='paper',
               yref='paper',
               font =dict(family=fontpath, 
-                         size=17, 
+                         size=30, 
                          color='#000000'))
     annotations.append(an)
     
@@ -826,7 +826,7 @@ def plot_dpfzm_slope (df_fz,
     
     xaxis =dict(
                 title='time [h]',
-                titlefont=dict(size=15),
+                titlefont=dict(size=25),
                 type=xtype,
                 showgrid=True,
                 mirror=True,
@@ -838,13 +838,13 @@ def plot_dpfzm_slope (df_fz,
                 tickcolor='#000000',
                 autorange=True,
                 tickformat="g",
-                tickfont=dict(size=13),
+                tickfont=dict(size=20),
                 )
     
     
     yaxis =dict(
                 title='dp/dp_slope',
-                titlefont=dict(size=15),
+                titlefont=dict(size=25),
                 type=ytype,
                 showgrid=True,
                 mirror=True,
@@ -856,7 +856,7 @@ def plot_dpfzm_slope (df_fz,
                 tickcolor='#000000',
                 autorange=True,
                 tickformat="1.2f",
-                tickfont=dict(size=13),
+                tickfont=dict(size=20),
                 )
     
     annotations=[]
@@ -872,7 +872,7 @@ def plot_dpfzm_slope (df_fz,
               xref='paper',
               yref='paper',
               font =dict(family=fontpath, 
-                         size=17, 
+                         size=30, 
                          color='#000000'))
     annotations.append(an)
     
@@ -925,7 +925,7 @@ def plot_pi_comp (df_fz,
 
     xaxis =dict(
                 title='time [h]',
-                titlefont=dict(size=15),
+                titlefont=dict(size=25),
                 type='linear',
                 showgrid=True,
                 mirror=True,
@@ -939,13 +939,13 @@ def plot_pi_comp (df_fz,
                 tickcolor='#000000',
                 autorange=True,
                 tickformat="g",
-                tickfont=dict(size=13),
+                tickfont=dict(size=20),
                 )
 
     
     yaxis =dict(
                 title='Pi [l/s/Mpa] / rel. FZ influence [-]',
-                titlefont=dict(size=15),
+                titlefont=dict(size=25),
                 type='log',
                 showgrid=True,
                 mirror=True,
@@ -960,7 +960,7 @@ def plot_pi_comp (df_fz,
                 autorange=True,
                 #range=[0,ymax],
                 tickformat="1.2f",
-                tickfont=dict(size=13),
+                tickfont=dict(size=20),
                 )
     
     
@@ -977,7 +977,7 @@ def plot_pi_comp (df_fz,
               xref='paper',
               yref='paper',
               font =dict(family=fontpath, 
-                         size=17, 
+                         size=30, 
                          color='#000000'))
     annotations.append(an)
     
