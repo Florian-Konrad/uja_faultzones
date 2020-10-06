@@ -107,6 +107,7 @@ Run it:
 
 Based on the current time stamp a new folder is created which will contain all requested output as well as a summary `.csv` file containing the main results for all parameter combinations provided in the input `.csv` file. Its name is `calculated_*yourinputfilename*.csv`.
 
+
 Results:
 
 * `main flow type - matrix` / `main flow type - fault zone` = result of derivative analysis (radial, bilinear, linear, steep or unspecifiable_hydr_changes)
@@ -119,6 +120,8 @@ Results:
 * `Pi change FZ [l/s/MPa]` = absolute increase of the wells PI through fault zone presence
 * `dP change FZ [MPa]` = pressure difference between matrix and fault zone pressure curve when equilibrium (less than 0.005% value change per hour) is reached
 * `Pi change pick time [h]` = time at which the equilibrium was found
+
+
 
 Generating an input `.csv` file by grid sampling:
 
