@@ -1,8 +1,8 @@
 <h1 align="center">
-  Upper Jurassic Aquifer Fault Zones
+  Upper Jurassic Aquifer Fault Zones (uja_faultzones)
   <br>
   <br>
-  uja_faultzones - a parametric investigation tool for fault zones and their effect on well productivity
+  a parametric investigation tool for fault zones and their effect on well productivity
   <br>
 </h1>
 
@@ -19,9 +19,9 @@
 
 ## About
 
-This Python tool is based on a numerical FE model of a typical fault zone for the Upper Jurassic aquifer in Southern Germany (https://doi.org/10.1186/s40517-019-0137-4). By applying the Reduced Basis method a reduced model was generated which can be used now to calculate the pressure curves of pumping tests of a vertical well inside a 70° inclined fault zone surrounded by an porous aquifer of 500 meter thickness by only supplying the governing hydraulic parameters in a table as `.csv` file. Calculation times for one parameter combination are generally below 1 second depending on the computer system.
+This Python tool is based on a numerical FE model of a typical fault zone for the Upper Jurassic aquifer in Southern Germany (https://doi.org/10.1186/s40517-019-0137-4). By applying the Reduced Basis method a reduced model was generated which can be used now to calculate the pressure curves of pumping tests of a vertical well inside a 70° inclined fault zone surrounded by an porous aquifer of 500 meter thickness by only supplying the governing hydraulic parameters in a table as `.csv` file. Calculation times for one parameter combination are generally below 1 second (~0.4s per simulation) depending on the computer system.
 
-Focus of uja_faultzones is to simulate two pumping tests for each parameter combination (in the range of the Upper Jurassic Aquifer) that it is given, one with and one without the fault zone. It then evaluates these pressure curves through the Bourdet Derivative (DER) to derive the main flow regime. Next, it compares both in an attempt to calculate the wells relative productivity index improvement through the fault zone. This calculation is only possible if the difference between the two pressure curves becomes numerically stable which depends on the chosen parameters (less than 0.005% value change per hour). Pressure curves can be ouput as `.csv` files as well as plots in various formats.
+Focus of uja_faultzones is to simulate two pumping tests (500h pumpint duration) for each parameter combination (in the range of the Upper Jurassic Aquifer) that it is given, one with and one without the fault zone. It then evaluates these pressure curves through the Bourdet Derivative (DER) to derive the main flow regime. Next, it compares both in an attempt to calculate the wells relative productivity index improvement through the fault zone. This calculation is only possible if the difference between the two pressure curves becomes numerically stable which depends on the chosen parameters (less than 0.005% value change per hour). Pressure curves can be ouput as `.csv` files as well as plots in various formats.
 
 <p align="center">
     <a href="https://github.com/Florian-Konrad/uja_faultzones/"><img src="images/fault_zone_concept.png" alt="fault_zone_concept" width="600"></a>
@@ -89,8 +89,8 @@ The parameter values must be provided in the following units:
 * `rate` = production rate applied to well [l/s] (fix to 20, 10 - 20 possible)
 * `fz_thickness` = fault zone thickness [m] (valid discrete values: 10, 15, 20, 35, 50, 75, 100, 200, 300)
 
-Put the `.csv` input file into the same folder as `fz_pi_calc.py`.
-Open `fz_pi_calc.py` and provide the `.csv` input file name under USER INPUT.
+Put the `.csv` input file into the same folder as `uja_faultzones.py`.
+Open `uja_faultzones.py` and provide the `.csv` input file name under USER INPUT.
 
 If you want to output Plots of the derivative analysis as well as the PI alteration calculation for each individual parameter combination set `plotting = True`
 
@@ -102,7 +102,7 @@ Run it:
 
   ```
   cd ~/uja_faultzones
-  python fz_pi_calc.py
+  python uja_faultzones.py
   ```
 
 Based on the current time stamp a new folder is created which will contain all requested output as well as a summary `.csv` file containing the main results for all parameter combinations provided in the input `.csv` file. Its name is `calculated_*yourinputfilename*.csv`.
@@ -119,6 +119,19 @@ Results:
 * `Pi change FZ [l/s/MPa]` = absolute increase of the wells PI through fault zone presence
 * `dP change FZ [MPa]` = pressure difference between matrix and fault zone pressure curve when equilibrium (less than 0.005% value change per hour) is reached
 * `Pi change pick time [h]` = time at which the equilibrium was found
+
+Generating an input `.csv` file by grid sampling:
+
+Open `generate_input_grid.py` and edit the section under USER INPUT.
+
+Have a look at the comments to get an idea of how to define the USER INPUT
+
+Run the file:
+
+  ```
+  cd ~/uja_faultzones
+  python generate_input_grid.py
+  ```
 
 
 ## Cite

@@ -1,12 +1,13 @@
 
-
-import numpy as np
 from time import time
 import os
 import fzpicalc.RB_model as rbm
+import fzpicalc.basic_func as basic_func
 
 maindir = os.getcwd()
-
+print('\n')
+print('Loading all RB models:')
+print('\n')
 #########################################################
 #########################################################
 ## define stuff from DwfEl input file:
@@ -40,7 +41,7 @@ for eachdir in modelnames:
     t = time()
     model = rbm.model_from_offline_data(path,
                                      q_a,q_f,q_l,q_m,
-                                     n_outputs, 
+                                     n_outputs,
                                      n_timesteps,
                                      dt,
                                      euler_theta,
@@ -49,8 +50,8 @@ for eachdir in modelnames:
                                      time_dependent_parameters = time_dependent_parameters,
                                      ID_param = ID_param, start_time = start_time,
                                      end_time = end_time)
-    t_model_gen = time()- t
-    print(str(t_model_gen)+'s elapsed to add the '+eachdir+' model!')
+    t_model_gen = basic_func.tidy(((time()- t)), 3)
+    print(str(t_model_gen)+'s elapsed to add the '+eachdir+'m fault zone thickness model!')
     models.append(model)
 
 #add matrix model:
@@ -58,7 +59,7 @@ modelnames.append('matrix')
 t = time()
 matrix_model = rbm.model_from_offline_data(os.path.join('modelz','matrix','offline_data'),
                                      2,2,q_l,2,
-                                     n_outputs, 
+                                     n_outputs,
                                      n_timesteps,
                                      dt,
                                      euler_theta,
@@ -68,7 +69,7 @@ matrix_model = rbm.model_from_offline_data(os.path.join('modelz','matrix','offli
                                      ID_param = [3], start_time = start_time,
                                      end_time = end_time)
 models.append(matrix_model)
-t_model_gen = time()- t
+t_model_gen = basic_func.tidy(((time()- t)), 3)
 print(str(t_model_gen)+'s elapsed to add the matrix model!')
 
 

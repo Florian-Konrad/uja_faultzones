@@ -117,7 +117,6 @@ def saveplot_routine(fig,indv_plotname,plotdir,newfoldername,auto_open=True,pdf=
 
     if os.path.isdir(os.path.join(plotdir,newfoldername)) == False:
         os.mkdir(os.path.join(plotdir,newfoldername))
-        print('\n')
         print('directory '+newfoldername+' created')
         print('\n')
     plotpath = os.path.join(plotdir,newfoldername)
