@@ -22,14 +22,14 @@ import fzpicalc.gen_RB_params as gen
     
 #define parameter ranges
 p_names=['k_matrix','k_fault','viscosity','S_matrix','S_fault','rate','fz_thickness'] #order is important name order must correspond to min max lists and fz_thickness must be last
-p_mins=[1.0e-17,1.0e-14,1.0e-4,2.0e-12,2.0e-12,20] #m²,m²,Pa*s,1/Pa,1/Pa,l/s
-p_maxs=[1.0e-12,1.0e-09,3.0e-4,1.6e-10,1.6e-10,20] #m²,m²,Pa*s,1/Pa,1/Pa,l/s
-fzthickness_vals = [20,50] #m from the possible discrete values defined in the RB models: [15,20,35,50,75,100,200,300]
+p_mins=[1.0e-15,1.0e-14,1.0e-4,2.0e-12,2.0e-12,20] #m²,m²,Pa*s,1/Pa,1/Pa,l/s
+p_maxs=[1.0e-11,1.0e-09,3.0e-4,1.6e-10,1.6e-10,20] #m²,m²,Pa*s,1/Pa,1/Pa,l/s
+fzthickness_vals = [15,75,200] #m from the possible discrete values defined in the RB models: [15,20,35,50,75,100,200,300]
 
 
 log_status=[True,True,False,False,False,False] #specify if the parameter grid sampling should be linear=False or logarythmically=True
 #define gridsteps over input space (for fz_thickness not necessary since only discrete values are allowed)
-p_steps=[5,4,2,2,2,1]
+p_steps=[3,3,2,2,2,1]
 
 
 # Tipp: same location in all lists belong together! 
@@ -42,7 +42,7 @@ only_fault_better = True
 
 
 #define output .csv filename:
-output_filename = 'parameter_input.csv'
+output_filename = 'test_input_set.csv'
 
 ########################################
 ########################################
@@ -62,7 +62,7 @@ df_params = gen.gen_input_df(p_mins,p_maxs,p_steps,p_names,log_status,fzthicknes
 
 if only_fault_better == True:
     #remove all combinations where m_kf > f_kf:
-    remove = df_params.loc[(df_params['k_matrix'] > df_params['k_fault']),].index.tolist()
+    remove = df_params.loc[(df_params['k_matrix'] >= df_params['k_fault']),].index.tolist()
     df_params = df_params.drop(remove)
     df_params = df_params.reset_index(drop=True)
     #remove all combinations where m_kf > f_kf:

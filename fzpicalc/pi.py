@@ -59,8 +59,8 @@ def try_to_get_pi(df_fz,
         #this triggers if short period radial flow is found at the end
         # which is associated with DER bending into negative due to RB model charackteristics
         # this wouldnt happen with FE model
-        print('\n')
-        print('secondary search for p_ref')
+        #print('\n')
+        #print('secondary search for p_ref')
         pref_secondary_search = True
         for ix, each_i in enumerate(radial_indices):
             if ix < len(radial_indices)-1 and ix > 30:

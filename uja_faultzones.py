@@ -26,7 +26,7 @@ print('\n')
 ########################################
 ########################################
 #USER INPUT:
-input_filename = 'extreme_100m_0.0001_highkm_2e-12ss.csv'
+input_filename = 'test_input_set.csv'
 save_pressure_curves = True
 plotting = True # this will enable pressure curve and derivative plots as well as PI calculation plot as .png
 #addtional plotting output formats will be generated if set True:

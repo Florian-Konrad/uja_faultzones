@@ -733,13 +733,9 @@ def determine_main_flow_type_light(df_p_curve,params_for_p_curve,index_of_headli
         else:
             main_flow_type = 'bilinear'
     elif (df.loc[sens_start_index:,'flowtype'] == 'linear').any():
-        list_linear_true = df.loc[sens_start_index:,'flowtype'] == 'linear'
-        if list_linear_true.value_counts()[True] > 1:
-            main_flow_type = 'linear'
+        main_flow_type = 'linear'
     elif (df.loc[sens_start_index:,'flowtype'] == 'bilinear').any():
-        list_bilinear_true = df.loc[sens_start_index:,'flowtype'] == 'bilinear'
-        if list_bilinear_true.value_counts()[True] > 1:
-            main_flow_type = 'bilinear'
+        main_flow_type = 'bilinear'
     elif (df.loc[30:,'flowtype'] == 'radial').any():
         main_flow_type = 'radial'
     elif (df.loc[start_index:,'flowtype'] == 'well_effect').any():
