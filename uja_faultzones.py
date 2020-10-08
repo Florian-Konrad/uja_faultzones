@@ -26,7 +26,7 @@ print('\n')
 ########################################
 ########################################
 #USER INPUT:
-input_filename = 'test_input_set.csv'
+input_filename = 'extreme_100m_0.0001_highkm_2e-12ss.csv'
 save_pressure_curves = True
 plotting = True # this will enable pressure curve and derivative plots as well as PI calculation plot as .png
 #addtional plotting output formats will be generated if set True:
@@ -148,6 +148,7 @@ for ei, each_input in input_data_set.iterrows():
         Pi_picktime,
         Ref_Pi_matrix,
         Ref_Pi_matrix_picktime,
+        P_refMatrix,
         df_fz_out,
         df_m_out,
         mft_fz,
@@ -186,6 +187,7 @@ for ei, each_input in input_data_set.iterrows():
         input_data_set.loc[ei,'Rel. fault zone PI influence [-]'] = Pi_change_rel
         input_data_set.loc[ei,'Pi change FZ [l/s/MPa]'] = Pi_change_si
         input_data_set.loc[ei,'dP change FZ [MPa]'] = delta_p_m_fz
+        input_data_set.loc[ei,'Reference Matrix P[MPa]'] = P_refMatrix
         input_data_set.loc[ei,'Pi change pick time [h]'] = Pi_picktime
 
     else: #if input check fails line will is not evaluated

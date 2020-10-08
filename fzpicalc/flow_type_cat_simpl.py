@@ -520,7 +520,12 @@ def append_flow_typ(df,matrix_perm):
             DER_dP_comp_n = np.isclose(df['DER_slope'][n],df['dP_slope'][n],rtol=0.15)
             DER_dP_comp_n1 = np.isclose(df['DER_slope'][n+1],df['dP_slope'][n+1],rtol=0.15)
             if DER_dP_comp_n == True and DER_dP_comp_n1 == True:
-                df.loc[n,'flowtype'] = 'linear'
+                if matrix_perm > 1e-14:
+                    #check if model boundary found before this point, if yes --> RB model behavior no real linear flow
+                    if not (df.loc[10:n,'flowtype'] == 'model_boundary').any():
+                        df.loc[n,'flowtype'] = 'linear'
+                else:
+                    df.loc[n,'flowtype'] = 'linear'
         n += 1
 
     # check last points of already specified flowtype and check if type changes more than three times
@@ -715,23 +720,27 @@ def determine_main_flow_type_light(df_p_curve,params_for_p_curve,index_of_headli
     df, faultzone_bd_detected = classify_datapoints(df_p_curve,params_for_p_curve)
 
     #skip early time for interpretation:
-    start_index = 44 #corresponds to 0.199hours
-
+    start_index = 44 #corresponds to 0.199 hours
+    sens_start_index = 35
     if (df.loc[start_index:,'flowtype'] == 'steep').any():
         main_flow_type = 'steep'
-    elif (df.loc[start_index:,'flowtype'] == 'linear').any() and (df.loc[start_index:,'flowtype'] == 'bilinear').any():
+    elif (df.loc[sens_start_index:,'flowtype'] == 'linear').any() and (df.loc[sens_start_index:,'flowtype'] == 'bilinear').any():
         #check if only one linear but multiple bilinear
         #if true set to bilinear:
-        list_linear_true = df.loc[start_index:,'flowtype'] == 'linear'
+        list_linear_true = df.loc[sens_start_index:,'flowtype'] == 'linear'
         if list_linear_true.value_counts()[True] > 3:
             main_flow_type = 'linear'
         else:
             main_flow_type = 'bilinear'
-    elif (df.loc[start_index:,'flowtype'] == 'linear').any():
-        main_flow_type = 'linear'
-    elif (df.loc[start_index:,'flowtype'] == 'bilinear').any():
-        main_flow_type = 'bilinear'
-    elif (df.loc[start_index:,'flowtype'] == 'radial').any():
+    elif (df.loc[sens_start_index:,'flowtype'] == 'linear').any():
+        list_linear_true = df.loc[sens_start_index:,'flowtype'] == 'linear'
+        if list_linear_true.value_counts()[True] > 1:
+            main_flow_type = 'linear'
+    elif (df.loc[sens_start_index:,'flowtype'] == 'bilinear').any():
+        list_bilinear_true = df.loc[sens_start_index:,'flowtype'] == 'bilinear'
+        if list_bilinear_true.value_counts()[True] > 1:
+            main_flow_type = 'bilinear'
+    elif (df.loc[30:,'flowtype'] == 'radial').any():
         main_flow_type = 'radial'
     elif (df.loc[start_index:,'flowtype'] == 'well_effect').any():
         main_flow_type = 'steep'
