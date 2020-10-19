@@ -31,13 +31,18 @@ ID_param = [5]
 #online_mu_parameters = np.array([1.0e-09, 1.0e-04, 0.00028974, 1.8e3, 1.8e3, 1.0289971393879524e-06])
 #([perm_matrix, perm_fault, mu, specific storage_matrix, specific storage_fault, production rate])
 
+
+RB_MODEL_FOLDER_NAME = 'modelz'
+
+
+
 #load all fault zone models:
 os.chdir(os.path.join(maindir,'fzpicalc'))
-modelnames = os.listdir('modelz')
+modelnames = os.listdir(RB_MODEL_FOLDER_NAME)
 modelnames.remove('matrix')
 models = []
 for eachdir in modelnames:
-    path = os.path.join('modelz',eachdir,'offline_data')
+    path = os.path.join(RB_MODEL_FOLDER_NAME,eachdir,'offline_data')
     t = time()
     model = rbm.model_from_offline_data(path,
                                      q_a,q_f,q_l,q_m,
@@ -57,7 +62,7 @@ for eachdir in modelnames:
 #add matrix model:
 modelnames.append('matrix')
 t = time()
-matrix_model = rbm.model_from_offline_data(os.path.join('modelz','matrix','offline_data'),
+matrix_model = rbm.model_from_offline_data(os.path.join(RB_MODEL_FOLDER_NAME,'matrix','offline_data'),
                                      2,2,q_l,2,
                                      n_outputs,
                                      n_timesteps,
