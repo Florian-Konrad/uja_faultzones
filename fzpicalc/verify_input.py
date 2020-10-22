@@ -11,7 +11,7 @@ param_range_min = {"k_matrix":1.0e-17,
 
 param_range_max = {"k_matrix":2.0e-11,
                    "k_fault":1.0e-9,
-                   "viscosity":3.0e-4,
+                   "viscosity":5.0e-4,
                    "S_matrix":1.6e-10,
                    "S_fault":1.6e-10,
                    "rate":20.0}
@@ -28,15 +28,15 @@ def check_input(row_dict,row_index):
             print('INPUT ERROR: '+each_req+' is missing in parameter set '+str(row_index)+' (row no. starting with 0)')
             print('\n')
             check = False
-        else: 
+        else:
             if each_req == 'fz_thickness':
-                if row_dict[each_req] not in [10,15,20,35,50,75,100,200,300]:
+                if row_dict[each_req] not in [15,20,35,50,75,100,200,300]:
                     print('\n')
                     print('INPUT ERROR: '+each_req+' in line '+str(row_index)+' invalid must be one of the following values: 15, 20, 35, 50, 75, 100, 200, 300 (row no. starting with 0)')
                     print('\n')
                     check = False
             else:
-                if (basic_func.tidy(row_dict[each_req],10) > param_range_max[each_req] 
+                if (basic_func.tidy(row_dict[each_req],10) > param_range_max[each_req]
                 or basic_func.tidy(row_dict[each_req],10) < param_range_min[each_req]
                 or np.isnan(row_dict[each_req])):
                     print('\n')
@@ -44,9 +44,3 @@ def check_input(row_dict,row_index):
                     print('\n')
                     check = False
     return check
-        
-        
-
-
-
-

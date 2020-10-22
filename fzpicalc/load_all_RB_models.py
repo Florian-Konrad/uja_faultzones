@@ -32,7 +32,7 @@ ID_param = [5]
 #([perm_matrix, perm_fault, mu, specific storage_matrix, specific storage_fault, production rate])
 
 
-RB_MODEL_FOLDER_NAME = 'modelz'
+RB_MODEL_FOLDER_NAME = 'RB_Modelz_v4'
 
 
 
