@@ -42,8 +42,6 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 
 * Install git (https://github.com/git-guides/install-git)
 
-* Install git LFS (https://docs.github.com/en/free-pro-team@latest/github/managing-large-files/installing-git-large-file-storage)
-
 * Clone uja_faultzones:
 
     ```
@@ -52,6 +50,11 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
     cd ~/uja_faultzones
     git checkout master
     ```
+* Insert Reduced Basis Models into ~/uja_faultzones/fzpicalc/
+    
+    The folder containing the reduced basis models has currently to be obtained by contacting the author and inserting it manually (due to 1.2GB file size). Just open an issue with a request, a temporary download link will be provided. 
+
+    The final folder path should then be ~/uja_faultzones/fzpicalc/RB_Modelz_v4
 
 * Install Miniconda3 e.g. Linux Users:
 
