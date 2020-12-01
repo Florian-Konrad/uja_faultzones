@@ -21,7 +21,7 @@
 
 This Python tool is based on a numerical FE model of a typical fault zone for the Upper Jurassic aquifer in Southern Germany (https://doi.org/10.1186/s40517-019-0137-4). By applying the Reduced Basis method (https://doi.org/10.1007/s10596-019-09916-6, https://github.com/denise91/DwarfElephant) a reduced model was generated which can be used now to calculate the pressure curves of pumping tests of a vertical well inside a 70° inclined fault zone surrounded by an porous aquifer of 500 meter thickness by only supplying the governing hydraulic parameters in a table as `.csv` file. Calculation times for one parameter combination are generally below 1 second (~0.4s per simulation) depending on the computer system.
 
-Focus of uja_faultzones is to simulate two pumping tests (500h water extraction) for each parameter combination (in the range of the Upper Jurassic Aquifer) that it is given, one with and one without the fault zone. It then evaluates these pressure curves through the Bourdet Derivative (DER) to derive the main flow regime. Next, it compares both in an attempt to calculate the wells relative productivity index improvement through the fault zone. This calculation is only possible if the difference between the two pressure curves becomes numerically stable which depends on the chosen parameters (less than 0.005% value change per hour). Pressure curves can be ouput as `.csv` files as well as plots in various formats.
+Focus of uja_faultzones is to simulate two pumping tests (500h water extraction) for each parameter combination (in the range of the Upper Jurassic Aquifer) that it is given, one with and one without the fault zone. It then evaluates the pressure evolution inside the well through the Bourdet Derivative (DER) to derive the main flow regime. Next, it compares the two pressure curves in an attempt to calculate the wells relative productivity index improvement through the fault zone. This calculation is only possible if the difference between the two pressure curves becomes numerically stable which depends on the chosen parameters (less than 0.005% value change per hour). Pressure curves can be ouput as .csv files as well as plots in various formats.
 
 <p align="center">
     <a href="https://github.com/Florian-Konrad/uja_faultzones/"><img src="images/fault_zone_concept.png" alt="fault_zone_concept" width="600"></a>
@@ -35,7 +35,7 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 
 #### Minimum System Requirements
 * Python 3+
-* Git & Git LFS
+* Git
 * Disk: 2 GBs
 
 #### Installation
@@ -50,9 +50,9 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
     cd ~/uja_faultzones
     git checkout master
     ```
-* Insert Reduced Basis Models into ~/uja_faultzones/fzpicalc/
-    
-    The folder containing the reduced basis models has currently to be obtained by contacting the author and inserting it manually (due to 1.2GB file size). Just open an issue with a request, a temporary download link will be provided. 
+* Download and insert Reduced Basis Models into ~/uja_faultzones/fzpicalc/
+
+    The folder containing the reduced basis models can be obtained here: https://mediatum.ub.tum.de/1579932
 
     The final folder path should then be ~/uja_faultzones/fzpicalc/RB_Modelz_v4
 
