@@ -144,4 +144,4 @@ Run the file:
 
 * This repository:
 
-    Florian Konrad & Denise Degen.(2020). Reduced Basis Models for a fault zone inside the Upper Jurassic Aquifer in Southern Germany https://doi.org/10.5281/zenodo.4289158
+    Florian Konrad & Denise Degen.(2020). Upper Jurassic Aquifer Fault Zones (uja_faultzones) - a parametric investigation tool for fault zones and their effect on well productivity https://doi.org/10.5281/zenodo.4289158
