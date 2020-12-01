@@ -54,7 +54,7 @@ uja_faultzones is distributed under the [GNU GENERAL PUBLIC LICENSE v3](https://
 
     The folder containing the reduced basis models can be obtained here: https://mediatum.ub.tum.de/1579932
 
-    The final folder path should then be ~/uja_faultzones/fzpicalc/RB_Modelz_v4
+    The final folder path should then be `~/uja_faultzones/fzpicalc/RB_Modelz_v4`
 
 * Install Miniconda3 e.g. Linux Users:
 
