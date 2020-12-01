@@ -90,7 +90,7 @@ The parameter values must be provided in the following units:
 * `S_matrix` = specific matrix storage [1/Pa] (valid range: 2.0e-12 - 1.6e-10)
 * `S_fault` = specific fault zone storage [1/Pa] (valid range: 2.0e-12 - 1.6e-10)
 * `rate` = production rate applied to well [l/s] (fix to 20, 10 - 20 possible)
-* `fz_thickness` = fault zone thickness [m] (valid discrete values: 10, 15, 20, 35, 50, 75, 100, 200, 300)
+* `fz_thickness` = fault zone thickness [m] (valid discrete values: 15, 20, 35, 50, 75, 100, 200, 300)
 
 Put the `.csv` input file into the same folder as `uja_faultzones.py`.
 Open `uja_faultzones.py` and provide the `.csv` input file name under USER INPUT.
