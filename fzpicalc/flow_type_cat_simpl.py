@@ -405,6 +405,7 @@ def append_flow_typ(df,matrix_perm):
             #often it is the case that steep is followed by positive and then bi-/linear
             if df['flowtype'][n+1] == 'positive':
                 
+                break_out_flag = False
                 for n_l in range(n+2,entry_length-1): #+2 to check cell after the detected 'positive'
                     for each_key in keywords:
                         if df['flowtype'][n_l] == each_key:
@@ -420,13 +421,16 @@ def append_flow_typ(df,matrix_perm):
                                         c_indexlist = range(start_i,end_i+1)
                                         potential_indexlist_list.append(c_indexlist)
                                     
-                                    #end local local search
+                                    #end all for loops
+                                    break_out_flag = True
+                                    #end local local search n_l_l
                                     break
+                        if break_out_flag:
                             #end keywords loop
                             break
-                    #end outer for loop with n_l index only if condition in inner loop is met??? compare to old code if this is the needed behavior
-                    # if yes FIX HERE!!!
-                    break
+                    #end outer for loop with n_l index only if condition in inner loop is met
+                    if break_out_flag:
+                        break
 
                              
 
