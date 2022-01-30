@@ -424,7 +424,8 @@ def append_flow_typ(df,matrix_perm):
                                     break
                             #end keywords loop
                             break
-                    #end outer for loop with n_l index
+                    #end outer for loop with n_l index only if condition in inner loop is met??? compare to old code if this is the needed behavior
+                    # if yes FIX HERE!!!
                     break
 
                              
