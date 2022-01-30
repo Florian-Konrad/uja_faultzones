@@ -24,7 +24,6 @@ for i in range(125):
     t_list.append(t)
 t_list.append(1.8e6)
 
-
 def make_basic_text_annotation_from_dict(dikt,
                                          x=0.50,
                                          y=0.1,
@@ -134,10 +133,6 @@ def saveplot_routine(fig,indv_plotname,plotdir,newfoldername,auto_open=True,pdf=
     if pdf == True:
         pio.write_image(fig, os.path.join(plotpath,filename_pdf))
 
-
-
-
-
 def layout_f_plotly(xaxis,
                     yaxis,
                     llegendword='insert lleg word',
@@ -173,7 +168,6 @@ def layout_f_plotly(xaxis,
     
     return layout
 
-
 def gen_axis_dict(title,typ,rang,dtick = 1,showticklabels=True,showgrid=True,tickformat=".2f"):
     axis =dict(
                 title=title,
@@ -199,8 +193,6 @@ def gen_axis_dict(title,typ,rang,dtick = 1,showticklabels=True,showgrid=True,tic
                         ),
                 )
     return axis
-
-
 
 def plot_pressure(ipath_arr,
                  SIparams_dict,
@@ -263,13 +255,6 @@ def plot_pressure(ipath_arr,
                      plotdir = plotdir)
     
     '''
-    #integrate input check for correct types here:
-    
-    
-    
-    
-    
-    
     
     #generating plotlabel and checking for differences:
     
@@ -625,11 +610,6 @@ def plot_pressure(ipath_arr,
     
     saveplot_routine(fig,indv_plotname,plotdir,newfoldername,auto_open,pdf,png,html)
 
-    
-
-
-
-
 def make_scatter_traces_withconfidence(traces,x,y,y_conf,name,rgb,style='solid'):
     p_trace=go.Scatter(showlegend=True,
                         x=x,
@@ -651,8 +631,6 @@ def make_scatter_traces_withconfidence(traces,x,y,y_conf,name,rgb,style='solid')
                         )
     traces.append(p_trace)
     return traces
-
-
 
 def make_scatter_traces_normal(traces,x,y,name,rgb,style='solid'):
     p_trace=go.Scatter(showlegend=True,
@@ -686,7 +664,6 @@ def add_point_traces(traces,x,y,name,rgb,size=5):
                         )
     traces.append(p_trace)
     return traces
-
 
 def plot_sobol(df_S1,
                df_S1_conf,
@@ -800,9 +777,6 @@ def plot_sobol(df_S1,
     saveplot_routine(fig1,indv_plotname,workingdir,'sobol_plots')     
     return     
 
-
-
-
 def plot_dpfzm_slope (df_fz,
                       indv_plotname,
                       workingdir,
@@ -889,11 +863,6 @@ def plot_dpfzm_slope (df_fz,
     saveplot_routine(fig1,indv_plotname,workingdir,'dp_diff_plots',auto_open,pdf,png,html) 
     
     return
-
-
-
-
-
 
 def plot_pi_comp (df_fz,
                     df_m,
